@@ -41,13 +41,16 @@
         .active { display: block; }
 
         .img-container img {
-            width: 130px;
+            width: 100%;
+            max-width: 250px;
+            height: auto;
             margin-bottom: 1rem;
             border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        h1 { font-family: 'Dancing Script', cursive; font-size: 2rem; margin-bottom: 10px; }
-        p { line-height: 1.6; }
+        h1 { font-family: 'Dancing Script', cursive; font-size: 2.2rem; margin-bottom: 10px; color: #0369a1; }
+        p { line-height: 1.6; font-size: 0.95rem; }
 
         .btn-container {
             display: flex;
@@ -58,17 +61,27 @@
         }
 
         button {
-            padding: 10px 25px;
+            padding: 12px 28px;
             border: none;
             border-radius: 50px;
             cursor: pointer;
             font-weight: bold;
             transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
 
         .next-btn { background: var(--rimuru-blue); color: white; }
         .yes-btn { background: var(--momo-pink); color: white; }
         #noBtn { background: #cbd5e1; color: #64748b; }
+
+        .sage-notice {
+            background: #e0f2fe;
+            border-left: 4px solid #0ea5e9;
+            padding: 10px;
+            font-size: 0.85rem;
+            margin: 15px 0;
+            text-align: left;
+        }
 
         @keyframes slideIn {
             from { opacity: 0; transform: translateX(20px); }
@@ -80,9 +93,11 @@
 
     <div class="card">
         <div class="page active" id="page1">
-            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJ1ZzJyeW94bmR6eXN6eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/vXjY892v3GqJ7H6RzP/giphy.gif" width="100">
+            <div class="img-container">
+                <img src="Baby.jpg" alt="Baby">
+            </div>
             <h1>Forgive your Wifey?</h1>
-            <p>I know I've been a bit of a handful lately... can we make up? 🥺</p>
+            <p>I know I've been a bit of a handful lately... I'm really sorry. Can we make up? 🥺</p>
             <div class="btn-container">
                 <button class="yes-btn" onclick="nextPage(2)">Yes!</button>
                 <button id="noBtn" onmouseover="moveNo()">No</button>
@@ -91,29 +106,34 @@
 
         <div class="page" id="page2">
             <img src="https://i.pinimg.com/originals/91/92/7d/91927d7f78c772c7262f27715f5904d0.gif" width="150" style="border-radius: 10px;">
-            <h1>"Great Sage" says...</h1>
-            <p>Like Rimuru, our love is always <b>evolving</b>. Even when I make mistakes, I'm gaining "Resistance" to my old ways so I can be the partner you deserve. I promise to keep leveling up for you!</p>
+            <div class="sage-notice">
+                <b><< Notice >></b> Individual "Wifey" has acquired extra skill: <b>Infinite Apology.</b> Evolution in progress...
+            </div>
+            <p>Like Rimuru, our love is always <b>evolving</b>. I promise to keep leveling up my heart to be the partner you deserve. I won't let the frost stay in our garden.</p>
             <div class="btn-container">
-                <button class="next-btn" onclick="nextPage(3)">Keep going? ✨</button>
+                <button class="next-btn" onclick="nextPage(3)">Next Level ✨</button>
             </div>
         </div>
 
         <div class="page" id="page3">
-            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Z0Zml4NmtmY29oZDVpMTRoMHg0OHlyYjZwdHdrYXNqM3N6eHh4eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/XfB6i733J16rXb6416/giphy.gif" width="180" style="border-radius: 10px;">
-            <h1>Momo & Okarun Vibes</h1>
-            <p>We might be a little chaotic sometimes, but just like nothing can break our bond once we're on the same team. <b>You’re my Okarun, I’m your Momo</b>.</p>
+            <div class="img-container">
+                <img src="kissndrunk.jpg" alt="Kiss and Drunk">
+            </div>
+            <h1>Momo & Okarun Energy</h1>
+            <p><i>"Even if the whole world thinks it's weird, if we're together, it's fine."</i></p>
+            <p>Just like <b>Dandadan</b>, our bond is indestructible. Whether we're dealing with spirits or just a bad day, I’m always on your team.</p>
             <div class="btn-container">
                 <button class="next-btn" onclick="nextPage(4)">One more thing... ❤️</button>
             </div>
         </div>
 
         <div class="page" id="page4">
-            <div style="background: #fff1f2; padding: 10px; border-radius: 15px; font-size: 0.8rem; margin-bottom: 10px;">Oct 18th - Where it all began</div>
+            <div style="background: #fff1f2; padding: 10px; border-radius: 15px; font-size: 0.8rem; margin-bottom: 10px; font-weight: bold;">Est. October 18th</div>
             <h1>I Love You Forever</h1>
-            <p style="text-align: left; font-size: 0.9rem;">My beautiful wifey, thank you for being patient with me. I hate seeing our garden wilt, but I'm ready to water it with all the love I have. You are my home.</p>
-            <p><b>Will you be my Valentine / My forever?</b></p>
+            <p style="text-align: left; font-size: 0.9rem;">My beautiful wifey, thank you for being patient with me. You are my home, my safe place, and my favorite person to annoy. I'm ready to water our garden and bloom together again.</p>
+            <p><b>Will you be my forever?</b></p>
             <div class="btn-container">
-                <button class="yes-btn" onclick="finalCelebrate()">ALWAYS YES! ❤️</button>
+                <button class="yes-btn" onclick="finalCelebrate()">I LOVE YOU! ❤️</button>
             </div>
         </div>
     </div>
@@ -131,21 +151,16 @@
         function nextPage(num) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById('page' + num).classList.add('active');
-            
-            // If we move away from Page 1, hide the floating No button
-            if(num > 1) {
-                document.getElementById('noBtn').style.display = 'none';
-            }
+            if(num > 1) { document.getElementById('noBtn').style.display = 'none'; }
         }
 
         function finalCelebrate() {
             confetti({
-                particleCount: 200,
-                spread: 90,
+                particleCount: 250,
+                spread: 100,
                 origin: { y: 0.6 },
                 colors: ['#fda4af', '#87ceeb', '#ffffff']
             });
-            alert("I love you, Wifey! Let's talk? ❤️");
         }
     </script>
 </body>
