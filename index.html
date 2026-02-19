@@ -3,166 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Beautiful Wifey</title>
+    <title>For My Wifey - Evolution of Us</title>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <style>
         :root {
-            --soft-blue: #f0f9ff;
-            --main-blue: #7dd3fc;
-            --text-color: #0c4a6e;
-            --heart-red: #fb7185;
+            --rimuru-blue: #87ceeb;
+            --momo-pink: #fda4af;
+            --text-dark: #1e293b;
         }
 
         body {
-            background-color: var(--soft-blue);
+            background-color: #f8fafc;
             font-family: 'Quicksand', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            color: var(--text-color);
             overflow: hidden;
+            color: var(--text-dark);
         }
 
         .card {
             background: white;
-            padding: 2.5rem;
-            border-radius: 30px;
+            padding: 2rem;
+            border-radius: 25px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.1);
             text-align: center;
             max-width: 450px;
             width: 90%;
-            border: 4px solid var(--main-blue);
-            transition: all 0.5s ease;
+            border: 3px solid var(--rimuru-blue);
+            position: relative;
         }
 
-        .october-badge {
-            background: #e0f2fe;
-            color: #0369a1;
-            padding: 6px 15px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: bold;
-            display: inline-block;
+        .page { display: none; animation: slideIn 0.5s ease-out; }
+        .active { display: block; }
+
+        .img-container img {
+            width: 130px;
             margin-bottom: 1rem;
+            border-radius: 15px;
         }
 
-        .rimuru-slime {
-            width: 120px;
-            margin-bottom: 1rem;
-            animation: bounce 2s infinite ease-in-out;
-        }
-
-        h1 { 
-            font-family: 'Dancing Script', cursive; 
-            font-size: 2.2rem; 
-            margin: 10px 0; 
-            color: #0369a1;
-        }
+        h1 { font-family: 'Dancing Script', cursive; font-size: 2rem; margin-bottom: 10px; }
+        p { line-height: 1.6; }
 
         .btn-container {
             display: flex;
             justify-content: center;
-            align-items: center;
-            gap: 20px; /* This keeps buttons side-by-side */
-            margin-top: 25px;
-            min-height: 60px;
+            gap: 15px;
+            margin-top: 20px;
+            min-height: 50px;
         }
 
         button {
-            padding: 12px 30px;
+            padding: 10px 25px;
             border: none;
             border-radius: 50px;
             cursor: pointer;
             font-weight: bold;
-            font-size: 1rem;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: all 0.3s;
         }
 
-        #yesBtn { 
-            background-color: var(--heart-red); 
-            color: white; 
-            box-shadow: 0 4px 15px rgba(251, 113, 133, 0.3);
-        }
+        .next-btn { background: var(--rimuru-blue); color: white; }
+        .yes-btn { background: var(--momo-pink); color: white; }
+        #noBtn { background: #cbd5e1; color: #64748b; }
 
-        #noBtn { 
-            background-color: #94a3b8; 
-            color: white;
-        }
-
-        .hidden { display: none; }
-
-        .letter-area {
-            line-height: 1.8;
-            text-align: left;
-            font-size: 1rem;
-            animation: fadeIn 1s ease-in;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
         }
     </style>
 </head>
 <body>
 
-    <div class="card" id="mainCard">
-        <div class="october-badge">Our Story Began: Oct 18 ❤️</div>
-        
-        <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJ1ZzJyeW94bmR6eXN6eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/vXjY892v3GqJ7H6RzP/giphy.gif" alt="Cute Slime" class="rimuru-slime">
-        
-        <div id="questionArea">
-            <h1>Forgive your wifey?</h1>
-            <p>I know I’ve been a handful lately... I’m really sorry. Can we water our garden and bloom together again?</p>
+    <div class="card">
+        <div class="page active" id="page1">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJ1ZzJyeW94bmR6eXN6eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/vXjY892v3GqJ7H6RzP/giphy.gif" width="100">
+            <h1>Forgive your Wifey?</h1>
+            <p>I know I've been a bit of a handful lately... can we make up? 🥺</p>
             <div class="btn-container">
-                <button id="yesBtn" onclick="showLetter()">Yes!</button>
-                <button id="noBtn" onmouseover="moveButton()">No</button>
+                <button class="yes-btn" onclick="nextPage(2)">Yes!</button>
+                <button id="noBtn" onmouseover="moveNo()">No</button>
             </div>
         </div>
 
-        <div id="letterArea" class="hidden letter-area">
-            <h2 style="color: var(--heart-red); font-family: 'Dancing Script'; font-size: 2rem; text-align: center;">I Love You, Wifey!</h2>
-            <p>Ever since <b>October 18th</b>, my world has been a billion times better because of you. I hate that I caused a "frost" in our garden lately, but I promise to be a better gardener for our love every single day.</p>
-            <p>Thank you for being my safe place, my best friend, and my partner in everything. I'm ready to listen, grow, and love you even harder.</p>
-            <p style="text-align: center; font-size: 1.2rem; margin-top: 20px;"><b>Forever Yours. ❤️</b></p>
+        <div class="page" id="page2">
+            <img src="https://i.pinimg.com/originals/91/92/7d/91927d7f78c772c7262f27715f5904d0.gif" width="150" style="border-radius: 10px;">
+            <h1>"Great Sage" says...</h1>
+            <p>Like Rimuru, our love is always <b>evolving</b>. Even when I make mistakes, I'm gaining "Resistance" to my old ways so I can be the partner you deserve. I promise to keep leveling up for you!</p>
+            <div class="btn-container">
+                <button class="next-btn" onclick="nextPage(3)">Keep going? ✨</button>
+            </div>
+        </div>
+
+        <div class="page" id="page3">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Z0Zml4NmtmY29oZDVpMTRoMHg0OHlyYjZwdHdrYXNqM3N6eHh4eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/XfB6i733J16rXb6416/giphy.gif" width="180" style="border-radius: 10px;">
+            <h1>Momo & Okarun Vibes</h1>
+            <p>We might be a little chaotic sometimes, but just like nothing can break our bond once we're on the same team. <b>You’re my Okarun, I’m your Momo</b>.</p>
+            <div class="btn-container">
+                <button class="next-btn" onclick="nextPage(4)">One more thing... ❤️</button>
+            </div>
+        </div>
+
+        <div class="page" id="page4">
+            <div style="background: #fff1f2; padding: 10px; border-radius: 15px; font-size: 0.8rem; margin-bottom: 10px;">Oct 18th - Where it all began</div>
+            <h1>I Love You Forever</h1>
+            <p style="text-align: left; font-size: 0.9rem;">My beautiful wifey, thank you for being patient with me. I hate seeing our garden wilt, but I'm ready to water it with all the love I have. You are my home.</p>
+            <p><b>Will you be my Valentine / My forever?</b></p>
+            <div class="btn-container">
+                <button class="yes-btn" onclick="finalCelebrate()">ALWAYS YES! ❤️</button>
+            </div>
         </div>
     </div>
 
     <script>
-        function moveButton() {
+        function moveNo() {
             const btn = document.getElementById('noBtn');
             const x = Math.random() * (window.innerWidth - btn.offsetWidth);
             const y = Math.random() * (window.innerHeight - btn.offsetHeight);
-            
             btn.style.position = 'fixed';
             btn.style.left = x + 'px';
             btn.style.top = y + 'px';
         }
 
-        function showLetter() {
-            // Trigger Confetti
-            confetti({
-                particleCount: 150,
-                spread: 70,
-                origin: { y: 0.6 },
-                colors: ['#fb7185', '#7dd3fc', '#ffffff']
-            });
-
-            // Transition content
-            document.getElementById('questionArea').classList.add('hidden');
-            document.getElementById('letterArea').classList.remove('hidden');
-            document.getElementById('noBtn').classList.add('hidden');
+        function nextPage(num) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('page' + num).classList.add('active');
             
-            // Subtle card change
-            document.getElementById('mainCard').style.borderColor = '#fb7185';
+            // If we move away from Page 1, hide the floating No button
+            if(num > 1) {
+                document.getElementById('noBtn').style.display = 'none';
+            }
+        }
+
+        function finalCelebrate() {
+            confetti({
+                particleCount: 200,
+                spread: 90,
+                origin: { y: 0.6 },
+                colors: ['#fda4af', '#87ceeb', '#ffffff']
+            });
+            alert("I love you, Wifey! Let's talk? ❤️");
         }
     </script>
 </body>
