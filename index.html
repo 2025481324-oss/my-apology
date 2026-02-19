@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Favorite Person 💙</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    <title>For My Beautiful Wifey</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <style>
         :root {
-            --soft-blue: #e0f2fe;
+            --soft-blue: #f0f9ff;
             --main-blue: #7dd3fc;
-            --text-color: #0369a1;
+            --text-color: #0c4a6e;
+            --heart-red: #fb7185;
         }
 
         body {
@@ -18,7 +20,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
             color: var(--text-color);
             overflow: hidden;
@@ -26,78 +28,111 @@
 
         .card {
             background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            padding: 2.5rem;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
             text-align: center;
-            max-width: 400px;
+            max-width: 450px;
             width: 90%;
             border: 4px solid var(--main-blue);
+            transition: all 0.5s ease;
+        }
+
+        .october-badge {
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 1rem;
         }
 
         .rimuru-slime {
-            width: 100px;
+            width: 120px;
             margin-bottom: 1rem;
             animation: bounce 2s infinite ease-in-out;
         }
 
-        h1 { font-size: 1.5rem; margin-bottom: 1rem; }
+        h1 { 
+            font-family: 'Dancing Script', cursive; 
+            font-size: 2.2rem; 
+            margin: 10px 0; 
+            color: #0369a1;
+        }
 
         .btn-container {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
-            position: relative;
+            align-items: center;
+            gap: 20px; /* This keeps buttons side-by-side */
+            margin-top: 25px;
+            min-height: 60px;
         }
 
         button {
-            padding: 10px 25px;
+            padding: 12px 30px;
             border: none;
             border-radius: 50px;
             cursor: pointer;
             font-weight: bold;
-            transition: transform 0.2s;
+            font-size: 1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
-        #yesBtn { background-color: #93c5fd; color: white; }
-        #noBtn { background-color: #fda4af; color: white; position: absolute; left: 160px;}
+        #yesBtn { 
+            background-color: var(--heart-red); 
+            color: white; 
+            box-shadow: 0 4px 15px rgba(251, 113, 133, 0.3);
+        }
+
+        #noBtn { 
+            background-color: #94a3b8; 
+            color: white;
+        }
 
         .hidden { display: none; }
 
-        .letter {
-            line-height: 1.6;
+        .letter-area {
+            line-height: 1.8;
             text-align: left;
-            font-size: 0.9rem;
+            font-size: 1rem;
+            animation: fadeIn 1s ease-in;
         }
 
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
     <div class="card" id="mainCard">
-        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJ1ZzJyeW94bmR6eXN6eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/vXjY892v3GqJ7H6RzP/giphy.gif" alt="Cute Slime" class="rimuru-slime">
+        <div class="october-badge">Our Story Began: Oct 18 ❤️</div>
+        
+        <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJ1ZzJyeW94bmR6eXN6eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/vXjY892v3GqJ7H6RzP/giphy.gif" alt="Cute Slime" class="rimuru-slime">
         
         <div id="questionArea">
-            <h1>Will you forgive your favorite person? 🥺</h1>
-            <p>I'm really sorry for everything, please don't be mad at me anymore...</p>
+            <h1>Forgive your wifey?</h1>
+            <p>I know I’ve been a handful lately... I’m really sorry. Can we water our garden and bloom together again?</p>
             <div class="btn-container">
                 <button id="yesBtn" onclick="showLetter()">Yes!</button>
                 <button id="noBtn" onmouseover="moveButton()">No</button>
             </div>
         </div>
 
-        <div id="letterArea" class="hidden">
-            <h2 style="color: #0ea5e9;">To My Amazing Girl 💙</h2>
-            <div class="letter">
-                <p>I know I've been a bit of a handful lately, but like Rimuru, I'm always evolving to be better for you! You’re the Okarun to my Momo (or vice versa!), and I hate it when things aren't right between us.</p>
-                <p>I miss your smile and your sweetness. Can we go back to being us again? I love you more than all the anime in the world!</p>
-            </div>
-            <p><b>I love you so much!</b></p>
+        <div id="letterArea" class="hidden letter-area">
+            <h2 style="color: var(--heart-red); font-family: 'Dancing Script'; font-size: 2rem; text-align: center;">I Love You, Wifey!</h2>
+            <p>Ever since <b>October 18th</b>, my world has been a billion times better because of you. I hate that I caused a "frost" in our garden lately, but I promise to be a better gardener for our love every single day.</p>
+            <p>Thank you for being my safe place, my best friend, and my partner in everything. I'm ready to listen, grow, and love you even harder.</p>
+            <p style="text-align: center; font-size: 1.2rem; margin-top: 20px;"><b>Forever Yours. ❤️</b></p>
         </div>
     </div>
 
@@ -111,11 +146,23 @@
             btn.style.left = x + 'px';
             btn.style.top = y + 'px';
         }
-function showLetter() {
+
+        function showLetter() {
+            // Trigger Confetti
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#fb7185', '#7dd3fc', '#ffffff']
+            });
+
+            // Transition content
             document.getElementById('questionArea').classList.add('hidden');
             document.getElementById('letterArea').classList.remove('hidden');
-            // Stop the No button from floating around
             document.getElementById('noBtn').classList.add('hidden');
+            
+            // Subtle card change
+            document.getElementById('mainCard').style.borderColor = '#fb7185';
         }
     </script>
 </body>
