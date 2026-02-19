@@ -17,7 +17,7 @@
         }
 
         body {
-            background-color: #0f172a; /* Darker theme to make the glow pop */
+            background-color: #0f172a;
             font-family: 'Quicksand', sans-serif;
             display: flex;
             justify-content: center;
@@ -62,7 +62,6 @@
             margin-bottom: 1rem;
         }
 
-        /* DIVINE GLOW ANIMATION */
         .divine-img {
             border: 4px solid var(--rimuru-blue);
             animation: pulse-glow 2s infinite;
@@ -95,13 +94,42 @@
         }
 
         h1 { font-family: 'Dancing Script', cursive; font-size: 2.3rem; color: #0369a1; margin: 10px 0; }
-        .btn-container { display: flex; justify-content: center; gap: 20px; margin-top: 25px; }
+        
+        .btn-container { 
+            display: flex; 
+            justify-content: center; 
+            gap: 20px; 
+            margin-top: 25px; 
+            min-height: 60px;
+            position: relative; 
+        }
+
         button { padding: 14px 32px; border: none; border-radius: 50px; cursor: pointer; font-weight: bold; transition: 0.3s; }
         .yes-btn, .next-btn, .enter-btn { background: #818cf8; color: white; }
+        #noBtn { background: #cbd5e1; color: #64748b; }
+
+        /* FIXED GARDEN STYLING */
+        .garden { 
+            height: 150px; 
+            display: flex; 
+            justify-content: center; 
+            align-items: flex-end; 
+            margin: 20px 0;
+        }
         
-        .garden { height: 150px; display: flex; justify-content: center; align-items: flex-end; }
-        .stem { width: 6px; height: 0; background: var(--leaf-green); transition: 2s; }
-        .bloom { width: 40px; height: 40px; opacity: 0; transform: scale(0); transition: 1s 1.8s; margin-bottom: -20px; position: relative; }
+        .flower { 
+            display: flex; 
+            flex-direction: column-reverse; /* Stem on bottom, Bloom on top */
+            align-items: center; 
+        }
+
+        .stem { width: 6px; height: 0; background: var(--leaf-green); transition: 2s; border-radius: 10px; }
+        
+        .bloom { 
+            width: 40px; height: 40px; opacity: 0; transform: scale(0); 
+            transition: 1s 1.8s; margin-bottom: -15px; position: relative; 
+        }
+
         .petal { position: absolute; width: 30px; height: 30px; border-radius: 50% 50% 0 50%; opacity: 0.8; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
@@ -124,6 +152,7 @@
             <p>I'm so sorry. Can we make our love bloom again? 🥺</p>
             <div class="btn-container">
                 <button class="yes-btn" onclick="nextPage(2)">Yes!</button>
+                <button id="noBtn" onmouseover="moveNo()">No</button>
             </div>
         </div>
 
@@ -144,7 +173,7 @@
         </div>
 
         <div class="page" id="page3">
-            <div style="background: var(--lavender); padding: 5px; border-radius: 10px; margin-bottom: 10px;">Est. October 18th</div>
+            <div style="background: var(--lavender); padding: 5px; border-radius: 10px; margin-bottom: 10px; display: inline-block;">Est. October 18th</div>
             <div class="img-container"><img src="momo.gif"></div>
             <h1>Our Strongest Bond</h1>
             <p>We might be chaotic, but we're the perfect team. Always on your side.</p>
@@ -191,6 +220,16 @@
         function nextPage(num) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById('page' + num).classList.add('active');
+        }
+
+        // RESTORED MOVING NO LOGIC
+        function moveNo() {
+            const btn = document.getElementById('noBtn');
+            const x = Math.random() * (window.innerWidth - btn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - btn.offsetHeight);
+            btn.style.position = 'fixed';
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
         }
 
         function makeItBloom() {
